@@ -6,6 +6,12 @@ let pokeName3;
 const pokeImg = document.getElementById("pokeImagen");
 const pokeImg2 = document.getElementById("pokeImagen2");
 const pokeImg3 = document.getElementById("pokeImagen3");
+
+//Paso la informacion del pokemon si salieron las tres imagens iguales
+const namePoke = document.getElementById("pokeName");
+const weightPoke = document.getElementById("pokeWeight");
+const imagePoke = document.getElementById("pokeImage");
+
 const boton = document.getElementById("btn");
 const imgSave = document.createElement("img");
 const imgSave2 = document.createElement("img");
@@ -13,7 +19,7 @@ const imgSave3 = document.createElement("img");
 
 //Llamada a la poke api, tambien inserta las imagenes en el html
 async function getApi(nombre, imagen, image) {
-  let id = Math.floor(Math.random() * 1);
+  let id = Math.floor(Math.random() * 18);
   if (id === 0) {
     id += 1;
   }
@@ -32,8 +38,9 @@ async function getApi(nombre, imagen, image) {
 
     if (pokeName === pokeName2 && pokeName2 === pokeName3) {
       console.log(data);
-      console.log(data.name);
-      console.log(data.weight);
+      namePoke.innerText = data.name;
+      weightPoke.innerText = data.weight;
+      imagePoke.src = data.sprites.front_default;
       $("#myModal").modal("show");
     }
     console.log(pokeName, pokeName2, pokeName3);
